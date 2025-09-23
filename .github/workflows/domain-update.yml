@@ -19,17 +19,15 @@ jobs:
         python-version: '3.x'
 
     - name: Gerekli kütüphaneleri yükle
-      run: |
-        pip install requests beautifulsoup4
+      run: pip install requests beautifulsoup4
 
     - name: Domain bilgisini çek ve kaydet
-      run: |
-        python .github/script/fetch_domain.py
+      run: python fetch_domain.py
 
     - name: Değişiklikleri commit et
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add selcuk_sports_guncel_domain.txt
-        git diff --staged --quiet || git commit -m "Domain otomatik güncellendi: $(date +'%Y-%m-%d %H:%M')"
+        git diff --staged --quiet || git commit -m "Domain güncellendi: $(date +'%d.%m.%Y %H:%M')"
         git push
