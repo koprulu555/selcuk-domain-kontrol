@@ -2,8 +2,8 @@ name: Domain Güncelleme
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # 6 saatte bir çalışır
-  workflow_dispatch: # Manuel tetiklemeye izin verir
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
   scrape-and-update:
@@ -20,17 +20,16 @@ jobs:
 
     - name: Gerekli kütüphaneleri yükle
       run: |
-        python -m pip install --upgrade pip
         pip install requests beautifulsoup4
 
     - name: Domain bilgisini çek ve kaydet
       run: |
-        python .github/scripts/fetch_domain.py
+        python .github/script/fetch_domain.py
 
     - name: Değişiklikleri commit et
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add selcuk_sports_guncel_domain.txt
-        git diff --staged --quiet || git commit -m "Domain otomatik güncellendi: $(date)"
+        git diff --staged --quiet || git commit -m "Domain otomatik güncellendi: $(date +'%Y-%m-%d %H:%M')"
         git push
