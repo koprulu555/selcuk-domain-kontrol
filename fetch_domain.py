@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def main():
-    target_url = "https://amp-cb61f35a52.selcuksportshdamp-d2329a81bd.click/amp.html"
+    target_url = "https://amp-b67a4cf82.selcuksportshdamp-1637ab1588.click/amp.html"
     proxy_url = "https://api.codetabs.com/v1/proxy/?quest="
     
     html_content = None
